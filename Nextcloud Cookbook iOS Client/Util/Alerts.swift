@@ -95,23 +95,45 @@ enum RecipeAlert: UserAlert {
 
 
 enum RecipeImportAlert: UserAlert {
-    case BAD_URL,
-         CHECK_CONNECTION,
-         WEBSITE_NOT_SUPPORTED
+    case BAD_URL
+    case CHECK_CONNECTION
+    case WEBSITE_NOT_SUPPORTED
+    case NO_RECIPE_FOUND          // Page loaded but no recipe data detected
+    case PARSE_ERROR              // Found data but couldn't parse it
+    case PARTIAL_IMPORT(warnings: [RecipeImportWarning])  // Imported with missing fields
     
     var localizedDescription: LocalizedStringKey {
         switch self {
-        case .BAD_URL: return "Please check the entered URL."
-        case .CHECK_CONNECTION: return "Unable to load website content. Please check your internet connection."
-        case .WEBSITE_NOT_SUPPORTED: return "This website might not be currently supported. If this appears incorrect, you can use the support options in the app settings to raise awareness about this issue."
+        case .BAD_URL:
+            return "Please check the entered URL."
+        case .CHECK_CONNECTION:
+            return "Unable to load website content. Please check your internet connection."
+        case .WEBSITE_NOT_SUPPORTED:
+            return "This website might not be currently supported. If this appears incorrect, you can use the support options in the app settings to raise awareness about this issue."
+        case .NO_RECIPE_FOUND:
+            return "No recipe data was found on this page. The website may not include structured recipe data."
+        case .PARSE_ERROR:
+            return "Found recipe data but was unable to parse it. Please try a different recipe or report this issue."
+        case .PARTIAL_IMPORT(let warnings):
+            let warningText = warnings.map { $0.localizedDescription }.joined(separator: ", ")
+            return LocalizedStringKey("Recipe imported with warnings: \(warningText). You can edit the recipe to add missing information.")
         }
     }
     
     var localizedTitle: LocalizedStringKey {
         switch self {
-        case .BAD_URL: return "Bad URL"
-        case .CHECK_CONNECTION: return "Connection error"
-        case .WEBSITE_NOT_SUPPORTED: return "Parsing error"
+        case .BAD_URL:
+            return "Bad URL"
+        case .CHECK_CONNECTION:
+            return "Connection error"
+        case .WEBSITE_NOT_SUPPORTED:
+            return "Website not supported"
+        case .NO_RECIPE_FOUND:
+            return "No recipe found"
+        case .PARSE_ERROR:
+            return "Parsing error"
+        case .PARTIAL_IMPORT:
+            return "Partial import"
         }
     }
     

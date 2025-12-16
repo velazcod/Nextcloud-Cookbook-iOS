@@ -1594,6 +1594,9 @@
         }
       }
     },
+    "Found recipe data but was unable to parse it. Please try a different recipe or report this issue." : {
+
+    },
     "Fraction" : {
       "localizations" : {
         "de" : {
@@ -2457,6 +2460,21 @@
         }
       }
     },
+    "No cooking times found" : {
+
+    },
+    "No description found" : {
+
+    },
+    "No image found" : {
+
+    },
+    "No ingredients found" : {
+
+    },
+    "No instructions found" : {
+
+    },
     "No keywords." : {
       "localizations" : {
         "de" : {
@@ -2500,6 +2518,12 @@
           }
         }
       }
+    },
+    "No recipe data was found on this page. The website may not include structured recipe data." : {
+
+    },
+    "No recipe found" : {
+
     },
     "None" : {
       "localizations" : {
@@ -2676,6 +2700,9 @@
           }
         }
       }
+    },
+    "Partial import" : {
+
     },
     "Paste the url of a recipe you would like to import in the above, and we will try to fill in the fields for you. This feature does not work with every website. If your favourite website is not supported, feel free to reach out for help. You can find the contact details in the app settings." : {
       "localizations" : {
@@ -2898,6 +2925,9 @@
           }
         }
       }
+    },
+    "Recipe imported with warnings: %@. You can edit the recipe to add missing information." : {
+
     },
     "Recipe Name" : {
       "localizations" : {
@@ -4253,6 +4283,9 @@
           }
         }
       }
+    },
+    "Website not supported" : {
+
     },
     "You're all set for cooking 🍓" : {
       "localizations" : {

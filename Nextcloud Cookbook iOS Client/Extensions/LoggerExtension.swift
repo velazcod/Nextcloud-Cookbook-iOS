@@ -16,4 +16,7 @@ extension Logger {
 
     /// Network related logging
     static let network = Logger(subsystem: subsystem, category: "network")
+    
+    /// Logger for recipe import operations
+    static let recipeImport = Logger(subsystem: subsystem, category: "RecipeImport")
 }

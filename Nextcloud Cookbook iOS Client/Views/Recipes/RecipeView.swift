@@ -295,16 +295,15 @@ extension RecipeView {
         }
         
         do {
-            let (scrapedRecipe, error) = try await RecipeScraper().scrape(url: url)
-            if let scrapedRecipe = scrapedRecipe {
-                viewModel.setupView(recipeDetail: scrapedRecipe)
+            let (result, error) = try await RecipeScraper().scrape(url: url)
+            if let recipe = result?.recipe {
+                viewModel.setupView(recipeDetail: recipe)
             }
             if let error = error {
                 return error
             }
         } catch {
-            print("Error")
-            
+            print("Error importing recipe: \(error)")
         }
         return nil
     }

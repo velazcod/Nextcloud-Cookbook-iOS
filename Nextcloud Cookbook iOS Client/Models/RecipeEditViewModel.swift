@@ -120,16 +120,16 @@ import SwiftUI
         }
         
         do {
-            let (scrapedRecipe, error) = try await RecipeScraper().scrape(url: importURL)
-            if let scrapedRecipe = scrapedRecipe {
-                self.recipe = scrapedRecipe
+            let (result, error) = try await RecipeScraper().scrape(url: importURL)
+            if let recipe = result?.recipe {
+                self.recipe = recipe
                 prepareView()
             }
             if let error = error {
                 return error
             }
         } catch {
-            print("Error")
+            print("Error importing recipe: \(error)")
         }
         return nil
          
