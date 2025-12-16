@@ -66,6 +66,13 @@
 		A9D8F9052B99F3E5009BACAE /* RecipeImportSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D8F9042B99F3E4009BACAE /* RecipeImportSection.swift */; };
 		A9E78A2B2BE7799F00206866 /* JsonAny.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E78A2A2BE7799F00206866 /* JsonAny.swift */; };
 		A9FA2AB62B5079B200A43702 /* alarm_sound_0.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A9FA2AB52B5079B200A43702 /* alarm_sound_0.mp3 */; };
+		B1000001PHASE2DETECT /* JsonLdDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000002PHASE2DETECT /* JsonLdDetector.swift */; };
+		B1000003PHASE2DETECT /* NextJsDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000004PHASE2DETECT /* NextJsDetector.swift */; };
+		B1000005PHASE2DETECT /* MicrodataDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000006PHASE2DETECT /* MicrodataDetector.swift */; };
+		B1000007PHASE2DETECT /* RecipeDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1000008PHASE2DETECT /* RecipeDetector.swift */; };
+		B1000009PHASE2DETECT /* RecipeFieldExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000APHASE2DETECT /* RecipeFieldExtractor.swift */; };
+		B100000BPHASE2DETECT /* HtmlUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000CPHASE2DETECT /* HtmlUtilities.swift */; };
+		B100000DPHASE2DETECT /* RecipeImportResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000EPHASE2DETECT /* RecipeImportResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +155,13 @@
 		A9DA25D42B82096B0061FC2B /* Nextcloud-Cookbook-iOS-Client-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Nextcloud-Cookbook-iOS-Client-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A9E78A2A2BE7799F00206866 /* JsonAny.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonAny.swift; sourceTree = "<group>"; };
 		A9FA2AB52B5079B200A43702 /* alarm_sound_0.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm_sound_0.mp3; sourceTree = "<group>"; };
+		B1000002PHASE2DETECT /* JsonLdDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonLdDetector.swift; sourceTree = "<group>"; };
+		B1000004PHASE2DETECT /* NextJsDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextJsDetector.swift; sourceTree = "<group>"; };
+		B1000006PHASE2DETECT /* MicrodataDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrodataDetector.swift; sourceTree = "<group>"; };
+		B1000008PHASE2DETECT /* RecipeDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetector.swift; sourceTree = "<group>"; };
+		B100000APHASE2DETECT /* RecipeFieldExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeFieldExtractor.swift; sourceTree = "<group>"; };
+		B100000CPHASE2DETECT /* HtmlUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlUtilities.swift; sourceTree = "<group>"; };
+		B100000EPHASE2DETECT /* RecipeImportResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeImportResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -312,9 +326,24 @@
 		A781E75F2AF8228100452F6F /* RecipeImport */ = {
 			isa = PBXGroup;
 			children = (
+				B100000FPHASE2DETECT /* Detectors */,
+				B1000008PHASE2DETECT /* RecipeDetector.swift */,
+				B100000APHASE2DETECT /* RecipeFieldExtractor.swift */,
+				B100000CPHASE2DETECT /* HtmlUtilities.swift */,
+				B100000EPHASE2DETECT /* RecipeImportResult.swift */,
 				A74D33C22AFCD1C300D06555 /* RecipeScraper.swift */,
 			);
 			path = RecipeImport;
+			sourceTree = "<group>";
+		};
+		B100000FPHASE2DETECT /* Detectors */ = {
+			isa = PBXGroup;
+			children = (
+				B1000002PHASE2DETECT /* JsonLdDetector.swift */,
+				B1000004PHASE2DETECT /* NextJsDetector.swift */,
+				B1000006PHASE2DETECT /* MicrodataDetector.swift */,
+			);
+			path = Detectors;
 			sourceTree = "<group>";
 		};
 		A79AA8E72B062DB6007D25F2 /* CookbookApi */ = {
@@ -610,6 +639,13 @@
 				A97506132B920D9F00E86029 /* RecipeDurationSection.swift in Sources */,
 				A70171822AA8E71900064C43 /* Nextcloud_Cookbook_iOS_ClientApp.swift in Sources */,
 				A74D33C32AFCD1C300D06555 /* RecipeScraper.swift in Sources */,
+				B1000001PHASE2DETECT /* JsonLdDetector.swift in Sources */,
+				B1000003PHASE2DETECT /* NextJsDetector.swift in Sources */,
+				B1000005PHASE2DETECT /* MicrodataDetector.swift in Sources */,
+				B1000007PHASE2DETECT /* RecipeDetector.swift in Sources */,
+				B1000009PHASE2DETECT /* RecipeFieldExtractor.swift in Sources */,
+				B100000BPHASE2DETECT /* HtmlUtilities.swift in Sources */,
+				B100000DPHASE2DETECT /* RecipeImportResult.swift in Sources */,
 				A70171AD2AA8EF4700064C43 /* AppState.swift in Sources */,
 				A76B8A6F2ADFFA8800096CEC /* SupportedLanguage.swift in Sources */,
 				A977D0E02B600318009783A9 /* RecipeTabView.swift in Sources */,
