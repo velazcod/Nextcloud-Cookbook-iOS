@@ -45,13 +45,14 @@ struct RecipeDetail: Codable {
     var description: String
     var url: String?
     var recipeYield: Int
+    var recipeYieldText: String?
     var recipeCategory: String
     var tool: [String]
     var recipeIngredient: [String]
     var recipeInstructions: [String]
     var nutrition: [String:String]
     
-    init(name: String, keywords: String, dateCreated: String, dateModified: String, imageUrl: String, id: String, prepTime: String? = nil, cookTime: String? = nil, totalTime: String? = nil, description: String, url: String, recipeYield: Int, recipeCategory: String, tool: [String], recipeIngredient: [String], recipeInstructions: [String], nutrition: [String:String]) {
+    init(name: String, keywords: String, dateCreated: String, dateModified: String, imageUrl: String, id: String, prepTime: String? = nil, cookTime: String? = nil, totalTime: String? = nil, description: String, url: String, recipeYield: Int, recipeYieldText: String? = nil, recipeCategory: String, tool: [String], recipeIngredient: [String], recipeInstructions: [String], nutrition: [String:String]) {
         self.name = name
         self.keywords = keywords
         self.dateCreated = dateCreated
@@ -64,6 +65,7 @@ struct RecipeDetail: Codable {
         self.description = description
         self.url = url
         self.recipeYield = recipeYield
+        self.recipeYieldText = recipeYieldText
         self.recipeCategory = recipeCategory
         self.tool = tool
         self.recipeIngredient = recipeIngredient
@@ -84,6 +86,7 @@ struct RecipeDetail: Codable {
         description = ""
         url = ""
         recipeYield = 0
+        recipeYieldText = nil
         recipeCategory = ""
         tool = []
         recipeIngredient = []
@@ -93,7 +96,7 @@ struct RecipeDetail: Codable {
     
     // Custom decoder to handle value type ambiguity
     private enum CodingKeys: String, CodingKey {
-        case name, keywords, dateCreated, dateModified, imageUrl, id, prepTime, cookTime, totalTime, description, url, recipeYield, recipeCategory, tool, recipeIngredient, recipeInstructions, nutrition
+        case name, keywords, dateCreated, dateModified, imageUrl, id, prepTime, cookTime, totalTime, description, url, recipeYield, recipeYieldText, recipeCategory, tool, recipeIngredient, recipeInstructions, nutrition
     }
 
     init(from decoder: Decoder) throws {
@@ -110,6 +113,7 @@ struct RecipeDetail: Codable {
         description = try container.decode(String.self, forKey: .description)
         url = try container.decode(String.self, forKey: .url)
         recipeYield = try container.decode(Int.self, forKey: .recipeYield)
+        recipeYieldText = try container.decodeIfPresent(String.self, forKey: .recipeYieldText)
         recipeCategory = try container.decode(String.self, forKey: .recipeCategory)
         tool = try container.decode([String].self, forKey: .tool)
         recipeIngredient = try container.decode([String].self, forKey: .recipeIngredient)
@@ -122,26 +126,27 @@ struct RecipeDetail: Codable {
 
 extension RecipeDetail {
     static var error: RecipeDetail {
-         return RecipeDetail(
-             name: "Error: Unable to load recipe.",
-             keywords: "",
-             dateCreated: "",
-             dateModified: "",
-             imageUrl: "",
-             id: "",
-             prepTime: "",
-             cookTime: "",
-             totalTime: "",
-             description: "",
-             url: "",
-             recipeYield: 0,
-             recipeCategory: "",
-             tool: [],
-             recipeIngredient: [],
-             recipeInstructions: [],
-             nutrition: [:]
-         )
-    }
+          return RecipeDetail(
+              name: "Error: Unable to load recipe.",
+              keywords: "",
+              dateCreated: "",
+              dateModified: "",
+              imageUrl: "",
+              id: "",
+              prepTime: "",
+              cookTime: "",
+              totalTime: "",
+              description: "",
+              url: "",
+              recipeYield: 0,
+              recipeYieldText: nil,
+              recipeCategory: "",
+              tool: [],
+              recipeIngredient: [],
+              recipeInstructions: [],
+              nutrition: [:]
+          )
+     }
     
     func getKeywordsArray() -> [String] {
         if keywords == "" { return [] }
