@@ -39,6 +39,11 @@ class DurationComponents: ObservableObject {
     
     
     
+    /// Returns true if all time components are zero
+    var isEmpty: Bool {
+        return hourComponent == 0 && minuteComponent == 0 && secondComponent == 0
+    }
+    
     var displayString: String {
         if hourComponent != 0 && minuteComponent != 0 {
             return "\(hourComponent) h \(minuteComponent) min"

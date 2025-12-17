@@ -139,7 +139,8 @@ class RecipeScraper {
             keywords: keywords.joined(separator: ","),
             dateCreated: ISO8601DateFormatter().string(from: Date()),
             dateModified: ISO8601DateFormatter().string(from: Date()),
-            imageUrl: imageUrl ?? "",
+            imageUrl: "",  // Server's internal image path
+            image: imageUrl,  // External image URL from scraping
             id: "",  // Will be assigned by server on save
             prepTime: prepTime,
             cookTime: cookTime,

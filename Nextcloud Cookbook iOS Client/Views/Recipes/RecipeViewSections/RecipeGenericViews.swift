@@ -131,6 +131,25 @@ struct EditableListView: View {
 }
 
 
+// MARK: - Incomplete Field Highlighting
+
+struct IncompleteFieldModifier: ViewModifier {
+    let isIncomplete: Bool
+    
+    func body(content: Content) -> some View {
+        content
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(isIncomplete ? Color.orange : Color.clear, lineWidth: 2)
+            )
+    }
+}
+
+extension View {
+    func highlightIfIncomplete(_ isIncomplete: Bool) -> some View {
+        modifier(IncompleteFieldModifier(isIncomplete: isIncomplete))
+    }
+}
 
 // MARK: - Previews
 

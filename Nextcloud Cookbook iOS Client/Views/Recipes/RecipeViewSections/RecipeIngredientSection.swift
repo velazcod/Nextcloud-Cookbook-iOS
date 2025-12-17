@@ -83,6 +83,7 @@ struct RecipeIngredientSection: View {
             }
         }
         .padding()
+        .highlightIfIncomplete(viewModel.hasWarning(.missingIngredients) && viewModel.observableRecipeDetail.recipeIngredient.isEmpty)
         .animation(.easeInOut, value: viewModel.observableRecipeDetail.ingredientMultiplier)
     }
 }

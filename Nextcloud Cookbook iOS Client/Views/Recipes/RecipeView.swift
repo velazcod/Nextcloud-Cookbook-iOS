@@ -29,28 +29,74 @@ struct RecipeView: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 0) {
-                ParallaxHeader(
-                    coordinateSpace: CoordinateSpaces.scrollView,
-                    defaultHeight: imageHeight
-                ) {
-                    if let recipeImage = viewModel.recipeImage {
-                        Image(uiImage: recipeImage)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(maxHeight: imageHeight + 200)
-                            .clipped()
-                    } else {
-                        Rectangle()
-                            .frame(height: 400)
-                            .foregroundStyle(
-                                LinearGradient(
-                                    gradient: Gradient(colors: [.ncGradientDark, .ncGradientLight]),
-                                    startPoint: .topLeading,
-                                    endPoint: .bottomTrailing
-                                )
-                            )
-                    }
-                }
+                 ParallaxHeader(
+                     coordinateSpace: CoordinateSpaces.scrollView,
+                     defaultHeight: imageHeight
+                 ) {
+                     if let recipeImage = viewModel.recipeImage {
+                         // Show server-loaded UIImage
+                         Image(uiImage: recipeImage)
+                             .resizable()
+                             .scaledToFill()
+                             .frame(maxHeight: imageHeight + 200)
+                             .clipped()
+                       } else if let externalImageUrl = viewModel.observableRecipeDetail.image,
+                                 !externalImageUrl.isEmpty,
+                                 let imageUrl = URL(string: externalImageUrl) {
+                         // Show AsyncImage from URL for imported recipes
+                         AsyncImage(url: imageUrl) { phase in
+                             switch phase {
+                             case .empty:
+                                 Rectangle()
+                                     .frame(height: 400)
+                                     .foregroundStyle(
+                                         LinearGradient(
+                                             gradient: Gradient(colors: [.ncGradientDark, .ncGradientLight]),
+                                             startPoint: .topLeading,
+                                             endPoint: .bottomTrailing
+                                         )
+                                     )
+                             case .success(let image):
+                                 image
+                                     .resizable()
+                                     .scaledToFill()
+                                     .frame(maxHeight: imageHeight + 200)
+                                     .clipped()
+                             case .failure:
+                                 Rectangle()
+                                     .frame(height: 400)
+                                     .foregroundStyle(
+                                         LinearGradient(
+                                             gradient: Gradient(colors: [.ncGradientDark, .ncGradientLight]),
+                                             startPoint: .topLeading,
+                                             endPoint: .bottomTrailing
+                                         )
+                                     )
+                             @unknown default:
+                                 Rectangle()
+                                     .frame(height: 400)
+                                     .foregroundStyle(
+                                         LinearGradient(
+                                             gradient: Gradient(colors: [.ncGradientDark, .ncGradientLight]),
+                                             startPoint: .topLeading,
+                                             endPoint: .bottomTrailing
+                                         )
+                                     )
+                             }
+                         }
+                     } else {
+                         // Show gradient placeholder
+                         Rectangle()
+                             .frame(height: 400)
+                             .foregroundStyle(
+                                 LinearGradient(
+                                     gradient: Gradient(colors: [.ncGradientDark, .ncGradientLight]),
+                                     startPoint: .topLeading,
+                                     endPoint: .bottomTrailing
+                                 )
+                             )
+                     }
+                 }
                 
                 VStack(alignment: .leading) {
                     if viewModel.editMode {
@@ -253,6 +299,19 @@ struct RecipeView: View {
         var alertType: UserAlert = RecipeAlert.GENERIC
         var alertAction: () async -> () = { }
         
+        /// Warnings from the last import operation
+        @Published var importWarnings: [RecipeImportWarning] = []
+        
+        /// Check if a specific field has a warning
+        func hasWarning(_ warning: RecipeImportWarning) -> Bool {
+            importWarnings.contains(warning)
+        }
+        
+        /// Clear all import warnings
+        func clearImportWarnings() {
+            importWarnings = []
+        }
+        
         // Initializers
         init(recipe: Recipe) {
             self.recipe = recipe
@@ -287,25 +346,24 @@ struct RecipeView: View {
 
 
 extension RecipeView {
-    func importRecipe(from url: String) async -> UserAlert? {
-        let (scrapedRecipe, error) = await appState.importRecipe(url: url)
-        if let scrapedRecipe = scrapedRecipe {
-            viewModel.setupView(recipeDetail: scrapedRecipe)
-            return nil
-        }
-        
+    func importRecipe(from url: String) async -> (RecipeImportResult?, UserAlert?) {
+        // Use local scraping for better warning detection and field extraction
         do {
             let (result, error) = try await RecipeScraper().scrape(url: url)
-            if let recipe = result?.recipe {
-                viewModel.setupView(recipeDetail: recipe)
+            if let result = result {
+                viewModel.setupView(recipeDetail: result.recipe)
+                // Store warnings in viewModel for field highlighting
+                viewModel.importWarnings = result.warnings
+                return (result, error)
             }
             if let error = error {
-                return error
+                return (nil, error)
             }
         } catch {
             print("Error importing recipe: \(error)")
+            return (nil, RecipeImportAlert.CHECK_CONNECTION)
         }
-        return nil
+        return (nil, nil)
     }
 }
 
@@ -411,10 +469,21 @@ struct RecipeViewToolBar: ToolbarContent {
         await appState.getCategories()
         await appState.getCategory(named: viewModel.observableRecipeDetail.recipeCategory, fetchMode: .preferServer)
         if let id = Int(viewModel.observableRecipeDetail.id) {
-            let _ = await appState.getRecipe(id: id, fetchMode: .onlyServer, save: true)
+            if let serverRecipeDetail = await appState.getRecipe(id: id, fetchMode: .onlyServer, save: true) {
+                // Preserve the imported image if the server doesn't provide one
+                var updatedRecipeDetail = serverRecipeDetail
+                if (updatedRecipeDetail.image ?? "").isEmpty && (viewModel.observableRecipeDetail.image ?? "").isEmpty == false {
+                    updatedRecipeDetail.image = viewModel.observableRecipeDetail.image
+                }
+                await MainActor.run {
+                    viewModel.setupView(recipeDetail: updatedRecipeDetail)
+                }
+            }
         }
-        viewModel.editMode = false
-        viewModel.presentAlert(RecipeAlert.UPLOAD_SUCCESS)
+        await MainActor.run {
+            viewModel.editMode = false
+            viewModel.presentAlert(RecipeAlert.UPLOAD_SUCCESS)
+        }
     }
     
     func handleDelete() async {

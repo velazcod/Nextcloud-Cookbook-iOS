@@ -32,6 +32,7 @@ struct RecipeDurationSection: View {
             }
         }
         .padding()
+        .highlightIfIncomplete(viewModel.hasWarning(.missingTimes) && viewModel.observableRecipeDetail.prepTime.isEmpty && viewModel.observableRecipeDetail.cookTime.isEmpty && viewModel.observableRecipeDetail.totalTime.isEmpty)
         .popover(isPresented: $presentPopover) {
             EditableDurationView(
                 prepTime: viewModel.observableRecipeDetail.prepTime,

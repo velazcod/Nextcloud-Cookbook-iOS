@@ -107,11 +107,11 @@ enum RecipeImportAlert: UserAlert {
         case .BAD_URL:
             return "Please check the entered URL."
         case .CHECK_CONNECTION:
-            return "Unable to load website content. Please check your internet connection."
+            return "Unable to connect to the website. Please check your internet connection and verify the URL is correct."
         case .WEBSITE_NOT_SUPPORTED:
             return "This website might not be currently supported. If this appears incorrect, you can use the support options in the app settings to raise awareness about this issue."
         case .NO_RECIPE_FOUND:
-            return "No recipe data was found on this page. The website may not include structured recipe data."
+            return "The page loaded successfully, but no recipe data was found. The website may not include structured recipe information."
         case .PARSE_ERROR:
             return "Found recipe data but was unable to parse it. Please try a different recipe or report this issue."
         case .PARTIAL_IMPORT(let warnings):

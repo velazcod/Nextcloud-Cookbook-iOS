@@ -32,7 +32,7 @@ struct RecipeInstructionSection: View {
             }
         }
         .padding()
-        
+        .highlightIfIncomplete(viewModel.hasWarning(.missingInstructions) && viewModel.observableRecipeDetail.recipeInstructions.isEmpty)
     }
 }
 

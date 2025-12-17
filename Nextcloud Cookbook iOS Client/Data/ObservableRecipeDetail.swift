@@ -13,7 +13,8 @@ class ObservableRecipeDetail: ObservableObject {
     var id: String
     @Published var name: String
     @Published var keywords: [String]
-    @Published var imageUrl: String
+    @Published var imageUrl: String  // Server's internal image path
+    @Published var image: String?    // External image URL
     @Published var prepTime: DurationComponents
     @Published var cookTime: DurationComponents
     @Published var totalTime: DurationComponents
@@ -36,6 +37,7 @@ class ObservableRecipeDetail: ObservableObject {
         name = String(localized: "New Recipe")
         keywords = []
         imageUrl = ""
+        image = nil
         prepTime = DurationComponents()
         cookTime = DurationComponents()
         totalTime = DurationComponents()
@@ -47,7 +49,7 @@ class ObservableRecipeDetail: ObservableObject {
         recipeIngredient = []
         recipeInstructions = []
         nutrition = [:]
-        
+
         ingredientMultiplier = 1
     }
     
@@ -56,6 +58,7 @@ class ObservableRecipeDetail: ObservableObject {
         name = recipeDetail.name
         keywords = recipeDetail.keywords.isEmpty ? [] : recipeDetail.keywords.components(separatedBy: ",")
         imageUrl = recipeDetail.imageUrl ?? ""
+        image = recipeDetail.image
         prepTime = DurationComponents.fromPTString(recipeDetail.prepTime ?? "")
         cookTime = DurationComponents.fromPTString(recipeDetail.cookTime ?? "")
         totalTime = DurationComponents.fromPTString(recipeDetail.totalTime ?? "")
@@ -67,7 +70,7 @@ class ObservableRecipeDetail: ObservableObject {
         recipeIngredient = recipeDetail.recipeIngredient
         recipeInstructions = recipeDetail.recipeInstructions
         nutrition = recipeDetail.nutrition
-        
+
         ingredientMultiplier = Double(recipeDetail.recipeYield == 0 ? 1 : recipeDetail.recipeYield)
     }
     
@@ -78,6 +81,7 @@ class ObservableRecipeDetail: ObservableObject {
             dateCreated: "",
             dateModified: "",
             imageUrl: self.imageUrl,
+            image: self.image,
             id: self.id,
             prepTime: self.prepTime.toPTString(),
             cookTime: self.cookTime.toPTString(),

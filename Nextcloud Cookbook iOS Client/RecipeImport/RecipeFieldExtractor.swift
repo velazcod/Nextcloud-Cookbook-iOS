@@ -43,31 +43,43 @@ struct RecipeFieldExtractor {
     /// Extract image URL from various formats
     static func extractImage(_ value: Any?) -> String? {
         guard let value = value else { return nil }
-        
+
         // Handle String directly (URL)
         if let stringValue = value as? String {
             return stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
         }
-        
+
         // Handle array of values
         if let arrayValue = value as? [Any], let first = arrayValue.first {
             return extractImage(first)
         }
-        
+
         // Handle dictionary formats
         if let dictValue = value as? [String: Any] {
-            // Try common keys
-            if let url = dictValue["url"] as? String {
-                return url.trimmingCharacters(in: .whitespacesAndNewlines)
+            // Try common keys - use extractString to handle nested structures
+            if let url = extractString(dictValue["url"]) {
+                return url
             }
-            if let contentUrl = dictValue["contentUrl"] as? String {
-                return contentUrl.trimmingCharacters(in: .whitespacesAndNewlines)
+            if let contentUrl = extractString(dictValue["contentUrl"]) {
+                return contentUrl
             }
-            if let id = dictValue["@id"] as? String {
-                return id.trimmingCharacters(in: .whitespacesAndNewlines)
+            if let id = extractString(dictValue["@id"]) {
+                return id
+            }
+            // Additional keys that might contain image URLs
+            if let thumbnail = extractString(dictValue["thumbnail"]) {
+                return thumbnail
+            }
+            if let src = extractString(dictValue["src"]) {
+                return src
+            }
+            // Handle ImageObject with nested url
+            if let imageObject = dictValue["image"] as? [String: Any],
+               let nestedUrl = extractString(imageObject["url"]) {
+                return nestedUrl
             }
         }
-        
+
         return nil
     }
     
@@ -104,28 +116,46 @@ struct RecipeFieldExtractor {
     /// Extract instructions from various formats
     static func extractInstructions(_ value: Any?) -> [String] {
         guard let value = value else { return [] }
-        
+
         // Handle array of strings directly
         if let arrayValue = value as? [String] {
             return arrayValue.map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
         }
-        
-        // Handle array of HowToStep dictionaries
+
+        // Handle array of HowToSection dictionaries (common in schema.org)
         if let arrayValue = value as? [[String: Any]] {
-            return arrayValue.compactMap { step in
-                if let text = step["text"] as? String {
-                    return text.trimmingCharacters(in: .whitespacesAndNewlines)
+            var allInstructions: [String] = []
+
+            for section in arrayValue {
+                // Check if this is a HowToSection with itemListElement
+                if let steps = section["itemListElement"] as? [[String: Any]] {
+                    let sectionInstructions = steps.compactMap { step -> String? in
+                        if let text = step["text"] as? String {
+                            return text.trimmingCharacters(in: .whitespacesAndNewlines)
+                        }
+                        if let name = step["name"] as? String {
+                            return name.trimmingCharacters(in: .whitespacesAndNewlines)
+                        }
+                        return nil
+                    }
+                    allInstructions.append(contentsOf: sectionInstructions)
                 }
-                if let name = step["name"] as? String {
-                    return name.trimmingCharacters(in: .whitespacesAndNewlines)
+                // If no itemListElement, try to treat the section as a direct step
+                else if let text = section["text"] as? String {
+                    allInstructions.append(text.trimmingCharacters(in: .whitespacesAndNewlines))
+                } else if let name = section["name"] as? String {
+                    allInstructions.append(name.trimmingCharacters(in: .whitespacesAndNewlines))
                 }
-                return nil
+            }
+
+            if !allInstructions.isEmpty {
+                return allInstructions
             }
         }
-        
-        // Handle HowToSection format
+
+        // Handle HowToSection format (single section)
         if let dictValue = value as? [String: Any],
-           let steps = dictValue["itemListElement"] as? [[String: Any]] {
+            let steps = dictValue["itemListElement"] as? [[String: Any]] {
             return steps.compactMap { step in
                 if let text = step["text"] as? String {
                     return text.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -136,7 +166,7 @@ struct RecipeFieldExtractor {
                 return nil
             }
         }
-        
+
         // Handle single string
         if let stringValue = value as? String {
             return stringValue
@@ -144,7 +174,7 @@ struct RecipeFieldExtractor {
                 .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
                 .filter { !$0.isEmpty }
         }
-        
+
         return []
     }
     
