@@ -74,6 +74,8 @@
 		B1000009PHASE2DETECT /* RecipeFieldExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000APHASE2DETECT /* RecipeFieldExtractor.swift */; };
 		B100000BPHASE2DETECT /* HtmlUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000CPHASE2DETECT /* HtmlUtilities.swift */; };
 		B100000DPHASE2DETECT /* RecipeImportResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000EPHASE2DETECT /* RecipeImportResult.swift */; };
+		B5000001PHASE5TEST /* RecipeImportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5000002PHASE5TEST /* RecipeImportTests.swift */; };
+		B5000003PHASE5TEST /* RecipeTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5000004PHASE5TEST /* RecipeTestHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,6 +166,8 @@
 		B100000APHASE2DETECT /* RecipeFieldExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeFieldExtractor.swift; sourceTree = "<group>"; };
 		B100000CPHASE2DETECT /* HtmlUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlUtilities.swift; sourceTree = "<group>"; };
 		B100000EPHASE2DETECT /* RecipeImportResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeImportResult.swift; sourceTree = "<group>"; };
+		B5000002PHASE5TEST /* RecipeImportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeImportTests.swift; sourceTree = "<group>"; };
+		B5000004PHASE5TEST /* RecipeTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTestHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,9 +252,19 @@
 		A70171922AA8E72000064C43 /* Nextcloud Cookbook iOS ClientTests */ = {
 			isa = PBXGroup;
 			children = (
+				B5000005PHASE5TEST /* TestHelpers */,
 				A70171932AA8E72000064C43 /* Nextcloud_Cookbook_iOS_ClientTests.swift */,
+				B5000002PHASE5TEST /* RecipeImportTests.swift */,
 			);
 			path = "Nextcloud Cookbook iOS ClientTests";
+			sourceTree = "<group>";
+		};
+		B5000005PHASE5TEST /* TestHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				B5000004PHASE5TEST /* RecipeTestHelpers.swift */,
+			);
+			path = TestHelpers;
 			sourceTree = "<group>";
 		};
 		A701719C2AA8E72000064C43 /* Nextcloud Cookbook iOS ClientUITests */ = {
@@ -662,6 +676,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A70171942AA8E72000064C43 /* Nextcloud_Cookbook_iOS_ClientTests.swift in Sources */,
+				B5000001PHASE5TEST /* RecipeImportTests.swift in Sources */,
+				B5000003PHASE5TEST /* RecipeTestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

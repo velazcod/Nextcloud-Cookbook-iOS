@@ -6,6 +6,7 @@
 //
 
 import XCTest
+@testable import Nextcloud_Cookbook_iOS_Client
 
 final class Nextcloud_Cookbook_iOS_ClientTests: XCTestCase {
 
