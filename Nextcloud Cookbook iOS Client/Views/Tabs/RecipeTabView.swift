@@ -54,10 +54,6 @@ struct RecipeTabView: View {
             .toolbar {
                 RecipeTabViewToolBar()
             }
-            .navigationDestination(isPresented: $viewModel.presentSettingsView) {
-                SettingsView()
-                    .environmentObject(appState)
-            }
             .navigationDestination(isPresented: $viewModel.presentEditView) {
                 RecipeView(viewModel: RecipeView.ViewModel())
                     .environmentObject(appState)
@@ -76,6 +72,12 @@ struct RecipeTabView: View {
             }
         }
         .tint(.nextcloudBlue)
+        .sheet(isPresented: $viewModel.presentSettingsView) {
+            NavigationStack {
+                SettingsView()
+                    .environmentObject(appState)
+            }
+        }
         .task {
             let connection = await appState.checkServerConnection()
             DispatchQueue.main.async {

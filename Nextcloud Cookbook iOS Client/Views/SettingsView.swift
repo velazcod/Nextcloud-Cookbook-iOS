@@ -13,7 +13,7 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject var appState: AppState
     @ObservedObject var userSettings = UserSettings.shared
-    @ObservedObject var viewModel = ViewModel()
+    @StateObject var viewModel = ViewModel()
     
     var body: some View {
         Form {
@@ -43,9 +43,9 @@ struct SettingsView: View {
             
             Section {
                 Picker("Select a default cookbook", selection: $userSettings.defaultCategory) {
-                    Text("None").tag("None")
+                    Text("None").tag("")
                     ForEach(appState.categories, id: \.name) { category in
-                        Text(category.name == "*" ? "Other" : category.name).tag(category)
+                        Text(category.name == "*" ? "Other" : category.name).tag(category.name)
                     }
                 }
             } header: {
