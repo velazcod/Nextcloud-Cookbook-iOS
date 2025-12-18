@@ -7,18 +7,29 @@
 
 import SwiftUI
 
+struct ImportURLItem: Identifiable {
+    let id = UUID()
+    let url: String
+}
+
 struct MainView: View {
     @StateObject var appState = AppState()
     @StateObject var groceryList = GroceryList()
-    
+
     // Tab ViewModels
     @StateObject var recipeViewModel = RecipeTabView.ViewModel()
     @StateObject var searchViewModel = SearchTabView.ViewModel()
+
+    // Share Extension import handling
+    @Binding var pendingImportURL: String?
+    @Binding var showImportSheet: Bool
     
+    @State private var importItem: ImportURLItem?
+
     enum Tab {
         case recipes, search, groceryList
     }
-    
+
     var body: some View {
         TabView {
             RecipeTabView()
@@ -69,5 +80,27 @@ struct MainView: View {
             await groceryList.load()
             recipeViewModel.presentLoadingIndicator = false
         }
+        .sheet(item: $importItem) { item in
+            NavigationStack {
+                RecipeView(viewModel: RecipeView.ViewModel(importURL: item.url))
+                    .environmentObject(appState)
+                    .environmentObject(groceryList)
+            }
+        }
+        .onChange(of: showImportSheet) { newValue in
+            if newValue, let url = pendingImportURL {
+                importItem = ImportURLItem(url: url)
+                showImportSheet = false
+                pendingImportURL = nil
+            }
+        }
+    }
+}
+
+// MARK: - Preview Support
+extension MainView {
+    init() {
+        self._pendingImportURL = .constant(nil)
+        self._showImportSheet = .constant(false)
     }
 }

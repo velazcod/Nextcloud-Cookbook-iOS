@@ -9,8 +9,15 @@ import Foundation
 import SwiftUI
 
 struct OnboardingView: View {
+    /// Binding to preserve pending import URL during onboarding
+    @Binding var pendingImportURL: String?
+
     @State var selectedTab: Int = 0
-    
+
+    init(pendingImportURL: Binding<String?> = .constant(nil)) {
+        self._pendingImportURL = pendingImportURL
+    }
+
     var body: some View {
         TabView(selection: $selectedTab) {
             WelcomeTab().tag(0)

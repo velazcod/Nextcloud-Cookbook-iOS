@@ -231,6 +231,18 @@ struct RecipeView: View {
                 viewModel.setupView(recipeDetail: RecipeDetail())
                 viewModel.editMode = true
                 viewModel.isDownloaded = false
+
+                // Auto-import if opened from Share Extension with a URL
+                if viewModel.autoImportOnAppear && !viewModel.importUrl.isEmpty {
+                    let (result, error) = await importRecipe(from: viewModel.importUrl)
+
+                    if let result = result {
+                        viewModel.importWarnings = result.warnings
+                        viewModel.autoImportOnAppear = false
+                    } else if let error = error {
+                        viewModel.presentAlert(error)
+                    }
+                }
             }
         }
         .alert(viewModel.alertType.localizedTitle, isPresented: $viewModel.presentAlert) {
@@ -301,7 +313,10 @@ struct RecipeView: View {
         
         /// Warnings from the last import operation
         @Published var importWarnings: [RecipeImportWarning] = []
-        
+
+        /// Flag to indicate this view was opened for auto-import from Share Extension
+        var autoImportOnAppear: Bool = false
+
         /// Check if a specific field has a warning
         func hasWarning(_ warning: RecipeImportWarning) -> Bool {
             importWarnings.contains(warning)
@@ -328,7 +343,23 @@ struct RecipeView: View {
                 imagePlaceholderUrl: "",
                 recipe_id: 0)
         }
-        
+
+        /// Initializer for Share Extension import with pre-filled URL
+        /// - Parameter importURL: The URL to auto-import from
+        init(importURL: String?) {
+            self.newRecipe = true
+            self.importUrl = importURL ?? ""
+            self.autoImportOnAppear = importURL != nil && !importURL!.isEmpty
+            self.recipe = Recipe(
+                name: String(localized: "New Recipe"),
+                keywords: "",
+                dateCreated: "",
+                dateModified: "",
+                imageUrl: "",
+                imagePlaceholderUrl: "",
+                recipe_id: 0)
+        }
+
         // View setup
         func setupView(recipeDetail: RecipeDetail) {
             self.recipeDetail = recipeDetail

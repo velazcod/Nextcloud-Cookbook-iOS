@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -59,7 +59,6 @@
 		A9805BED2BAAC70E003B7231 /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9805BEC2BAAC70E003B7231 /* NumberFormatter.swift */; };
 		A9BBB38C2B8D3B0C002DA7FF /* ParallaxHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BBB38B2B8D3B0C002DA7FF /* ParallaxHeaderView.swift */; };
 		A9BBB38E2B8E44B3002DA7FF /* BottomClipper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BBB38D2B8E44B3002DA7FF /* BottomClipper.swift */; };
-		B2000001PHASE4UI /* ImportWarningBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2000002PHASE4UI /* ImportWarningBanner.swift */; };
 		A9BBB3902B91BE31002DA7FF /* ObservableRecipeDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BBB38F2B91BE31002DA7FF /* ObservableRecipeDetail.swift */; };
 		A9CA6CEF2B4C086100F78AB5 /* RecipeExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CA6CEE2B4C086100F78AB5 /* RecipeExporter.swift */; };
 		A9CA6CF62B4C63F200F78AB5 /* TPPDF in Frameworks */ = {isa = PBXBuildFile; productRef = A9CA6CF52B4C63F200F78AB5 /* TPPDF */; };
@@ -74,8 +73,11 @@
 		B1000009PHASE2DETECT /* RecipeFieldExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000APHASE2DETECT /* RecipeFieldExtractor.swift */; };
 		B100000BPHASE2DETECT /* HtmlUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000CPHASE2DETECT /* HtmlUtilities.swift */; };
 		B100000DPHASE2DETECT /* RecipeImportResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100000EPHASE2DETECT /* RecipeImportResult.swift */; };
+		B2000001PHASE4UI /* ImportWarningBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2000002PHASE4UI /* ImportWarningBanner.swift */; };
 		B5000001PHASE5TEST /* RecipeImportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5000002PHASE5TEST /* RecipeImportTests.swift */; };
 		B5000003PHASE5TEST /* RecipeTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5000004PHASE5TEST /* RecipeTestHelpers.swift */; };
+		B7D420E62EF383BF005D308B /* Cookbook Share Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B7D420DC2EF383BF005D308B /* Cookbook Share Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C0000001SHAREDURL /* SharedURLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0000002SHAREDURL /* SharedURLManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,7 +95,28 @@
 			remoteGlobalIDString = A701717D2AA8E71900064C43;
 			remoteInfo = "Nextcloud Cookbook iOS Client";
 		};
+		B7D420E42EF383BF005D308B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A70171762AA8E71900064C43 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B7D420DB2EF383BF005D308B;
+			remoteInfo = "Cookbook Share Extension";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B7D420E72EF383BF005D308B /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B7D420E62EF383BF005D308B /* Cookbook Share Extension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		A701717E2AA8E71900064C43 /* Nextcloud Cookbook iOS Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nextcloud Cookbook iOS Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,7 +174,6 @@
 		A9805BEC2BAAC70E003B7231 /* NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
 		A9BBB38B2B8D3B0C002DA7FF /* ParallaxHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParallaxHeaderView.swift; sourceTree = "<group>"; };
 		A9BBB38D2B8E44B3002DA7FF /* BottomClipper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomClipper.swift; sourceTree = "<group>"; };
-		B2000002PHASE4UI /* ImportWarningBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportWarningBanner.swift; sourceTree = "<group>"; };
 		A9BBB38F2B91BE31002DA7FF /* ObservableRecipeDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableRecipeDetail.swift; sourceTree = "<group>"; };
 		A9CA6CEE2B4C086100F78AB5 /* RecipeExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeExporter.swift; sourceTree = "<group>"; };
 		A9D89AAF2B4FE97800F49D92 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
@@ -166,9 +188,26 @@
 		B100000APHASE2DETECT /* RecipeFieldExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeFieldExtractor.swift; sourceTree = "<group>"; };
 		B100000CPHASE2DETECT /* HtmlUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlUtilities.swift; sourceTree = "<group>"; };
 		B100000EPHASE2DETECT /* RecipeImportResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeImportResult.swift; sourceTree = "<group>"; };
+		B2000002PHASE4UI /* ImportWarningBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportWarningBanner.swift; sourceTree = "<group>"; };
 		B5000002PHASE5TEST /* RecipeImportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeImportTests.swift; sourceTree = "<group>"; };
 		B5000004PHASE5TEST /* RecipeTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTestHelpers.swift; sourceTree = "<group>"; };
+		B7D420DC2EF383BF005D308B /* Cookbook Share Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Cookbook Share Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0000002SHAREDURL /* SharedURLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedURLManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		B7D420EA2EF383BF005D308B /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = B7D420DB2EF383BF005D308B /* Cookbook Share Extension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		B7D420DD2EF383BF005D308B /* Cookbook Share Extension */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (B7D420EA2EF383BF005D308B /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Cookbook Share Extension"; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		A701717B2AA8E71900064C43 /* Frameworks */ = {
@@ -194,6 +233,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B7D420D92EF383BF005D308B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -205,6 +251,7 @@
 				A70171802AA8E71900064C43 /* Nextcloud Cookbook iOS Client */,
 				A70171922AA8E72000064C43 /* Nextcloud Cookbook iOS ClientTests */,
 				A701719C2AA8E72000064C43 /* Nextcloud Cookbook iOS ClientUITests */,
+				B7D420DD2EF383BF005D308B /* Cookbook Share Extension */,
 				A701717F2AA8E71900064C43 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -215,6 +262,7 @@
 				A701717E2AA8E71900064C43 /* Nextcloud Cookbook iOS Client.app */,
 				A701718F2AA8E72000064C43 /* Nextcloud Cookbook iOS ClientTests.xctest */,
 				A70171992AA8E72000064C43 /* Nextcloud Cookbook iOS ClientUITests.xctest */,
+				B7D420DC2EF383BF005D308B /* Cookbook Share Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -257,14 +305,6 @@
 				B5000002PHASE5TEST /* RecipeImportTests.swift */,
 			);
 			path = "Nextcloud Cookbook iOS ClientTests";
-			sourceTree = "<group>";
-		};
-		B5000005PHASE5TEST /* TestHelpers */ = {
-			isa = PBXGroup;
-			children = (
-				B5000004PHASE5TEST /* RecipeTestHelpers.swift */,
-			);
-			path = TestHelpers;
 			sourceTree = "<group>";
 		};
 		A701719C2AA8E72000064C43 /* Nextcloud Cookbook iOS ClientUITests */ = {
@@ -317,6 +357,7 @@
 				A70171C52AB4C43A00064C43 /* DataModels.swift */,
 				A97B4D312B80B3E900EC1A88 /* RecipeModels.swift */,
 				A9BBB38F2B91BE31002DA7FF /* ObservableRecipeDetail.swift */,
+				C0000002SHAREDURL /* SharedURLManager.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -350,16 +391,6 @@
 				A74D33C22AFCD1C300D06555 /* RecipeScraper.swift */,
 			);
 			path = RecipeImport;
-			sourceTree = "<group>";
-		};
-		B100000FPHASE2DETECT /* Detectors */ = {
-			isa = PBXGroup;
-			children = (
-				B1000002PHASE2DETECT /* JsonLdDetector.swift */,
-				B1000004PHASE2DETECT /* NextJsDetector.swift */,
-				B1000006PHASE2DETECT /* MicrodataDetector.swift */,
-			);
-			path = Detectors;
 			sourceTree = "<group>";
 		};
 		A79AA8E72B062DB6007D25F2 /* CookbookApi */ = {
@@ -467,6 +498,24 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		B100000FPHASE2DETECT /* Detectors */ = {
+			isa = PBXGroup;
+			children = (
+				B1000002PHASE2DETECT /* JsonLdDetector.swift */,
+				B1000004PHASE2DETECT /* NextJsDetector.swift */,
+				B1000006PHASE2DETECT /* MicrodataDetector.swift */,
+			);
+			path = Detectors;
+			sourceTree = "<group>";
+		};
+		B5000005PHASE5TEST /* TestHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				B5000004PHASE5TEST /* RecipeTestHelpers.swift */,
+			);
+			path = TestHelpers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -477,10 +526,12 @@
 				A701717A2AA8E71900064C43 /* Sources */,
 				A701717B2AA8E71900064C43 /* Frameworks */,
 				A701717C2AA8E71900064C43 /* Resources */,
+				B7D420E72EF383BF005D308B /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B7D420E52EF383BF005D308B /* PBXTargetDependency */,
 			);
 			name = "Nextcloud Cookbook iOS Client";
 			packageProductDependencies = (
@@ -527,6 +578,28 @@
 			productReference = A70171992AA8E72000064C43 /* Nextcloud Cookbook iOS ClientUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		B7D420DB2EF383BF005D308B /* Cookbook Share Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B7D420EB2EF383BF005D308B /* Build configuration list for PBXNativeTarget "Cookbook Share Extension" */;
+			buildPhases = (
+				B7D420D82EF383BF005D308B /* Sources */,
+				B7D420D92EF383BF005D308B /* Frameworks */,
+				B7D420DA2EF383BF005D308B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				B7D420DD2EF383BF005D308B /* Cookbook Share Extension */,
+			);
+			name = "Cookbook Share Extension";
+			packageProductDependencies = (
+			);
+			productName = "Cookbook Share Extension";
+			productReference = B7D420DC2EF383BF005D308B /* Cookbook Share Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -534,7 +607,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 2620;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					A701717D2AA8E71900064C43 = {
@@ -547,6 +620,9 @@
 					A70171982AA8E72000064C43 = {
 						CreatedOnToolsVersion = 14.3;
 						TestTargetID = A701717D2AA8E71900064C43;
+					};
+					B7D420DB2EF383BF005D308B = {
+						CreatedOnToolsVersion = 26.2;
 					};
 				};
 			};
@@ -573,6 +649,7 @@
 				A701717D2AA8E71900064C43 /* Nextcloud Cookbook iOS Client */,
 				A701718E2AA8E72000064C43 /* Nextcloud Cookbook iOS ClientTests */,
 				A70171982AA8E72000064C43 /* Nextcloud Cookbook iOS ClientUITests */,
+				B7D420DB2EF383BF005D308B /* Cookbook Share Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -597,6 +674,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A70171972AA8E72000064C43 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B7D420DA2EF383BF005D308B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -668,6 +752,7 @@
 				A76B8A6F2ADFFA8800096CEC /* SupportedLanguage.swift in Sources */,
 				A977D0E02B600318009783A9 /* RecipeTabView.swift in Sources */,
 				A703226F2ABB1DD700D7C4ED /* ColorExtension.swift in Sources */,
+				C0000001SHAREDURL /* SharedURLManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -690,6 +775,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B7D420D82EF383BF005D308B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -702,6 +794,11 @@
 			isa = PBXTargetDependency;
 			target = A701717D2AA8E71900064C43 /* Nextcloud Cookbook iOS Client */;
 			targetProxy = A701719A2AA8E72000064C43 /* PBXContainerItemProxy */;
+		};
+		B7D420E52EF383BF005D308B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B7D420DB2EF383BF005D308B /* Cookbook Share Extension */;
+			targetProxy = B7D420E42EF383BF005D308B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1003,6 +1100,74 @@
 			};
 			name = Release;
 		};
+		B7D420E82EF383BF005D308B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = EF2ABA36D9;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Cookbook Share Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Cookbook Share Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.10.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "VincentMeilinger.Nextcloud-Cookbook-iOS-Client.Cookbook-Share-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B7D420E92EF383BF005D308B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = EF2ABA36D9;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Cookbook Share Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Cookbook Share Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.10.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "VincentMeilinger.Nextcloud-Cookbook-iOS-Client.Cookbook-Share-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1038,6 +1203,15 @@
 			buildConfigurations = (
 				A70171AA2AA8E72000064C43 /* Debug */,
 				A70171AB2AA8E72000064C43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B7D420EB2EF383BF005D308B /* Build configuration list for PBXNativeTarget "Cookbook Share Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B7D420E82EF383BF005D308B /* Debug */,
+				B7D420E92EF383BF005D308B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

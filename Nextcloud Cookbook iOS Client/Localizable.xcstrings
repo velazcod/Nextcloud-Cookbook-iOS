@@ -573,6 +573,30 @@
         }
       }
     },
+    "Add to Cookbook" : {
+      "comment" : "Share Extension display name",
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zu Kochbuch hinzufügen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir al libro de recetas"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter au livre de recettes"
+          }
+        }
+      }
+    },
     "An HTML parsing and web scraping library for Swift. Used for importing schema.org recipes from websites." : {
       "localizations" : {
         "de" : {
@@ -1835,6 +1859,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Importer une recette"
+          }
+        }
+      }
+    },
+    "Importing recipe..." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rezept wird importiert..."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importando receta..."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importation de la recette..."
           }
         }
       }
